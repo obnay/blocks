@@ -85,4 +85,5 @@ public class SysUser extends BaseEntity {
      */
     @Column(length = 1)
     private Byte status;
+
 }

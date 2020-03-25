@@ -3,7 +3,7 @@
     <!--定义日志文件的存储地址 -->
     <springProfile name="dev">
         <springProperty scope="context" name="server_port" source="server.port" defaultValue="localhost"/>
-        <property name="LOG_HOME" value="./logs"/>
+        <property name="LOG_HOME" value="./../logs"/>
         <property name="LOG_NAME" value="blocks"/>
     </springProfile>
 

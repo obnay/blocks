@@ -9,4 +9,11 @@ import com.obnay.common.base.BaseService;
  */
 public interface SysUserService extends BaseService<SysUser> {
 
+    /**
+     * 根据账号查找
+     *
+     * @param loginName
+     * @return
+     */
+    SysUser findByLoginNameOrMobileOrEmail(String loginName);
 }

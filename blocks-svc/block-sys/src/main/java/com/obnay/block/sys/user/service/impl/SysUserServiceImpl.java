@@ -18,4 +18,9 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUser, SysUserReposito
     public void onEntityEvent(EntityEvent event) {
         super.onEntityEvent(event);
     }
+
+    @Override
+    public SysUser findByLoginNameOrMobileOrEmail(String loginName) {
+        return this.getRepository().findByLoginNameOrMobileOrEmail(loginName);
+    }
 }
