@@ -20,6 +20,12 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Configuration
 @EnableAsync
 public class AsyncConfig implements AsyncConfigurer {
+
+    /**
+     * 线程名称
+     */
+    private static final String THREAD_NAME = "AsyncTaskExecutor-";
+
     @Bean
     public Executor taskExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
@@ -32,7 +38,7 @@ public class AsyncConfig implements AsyncConfigurer {
         // 设置线程超时时间
         executor.setKeepAliveSeconds(60);
         // 设置线程名称前缀
-        executor.setThreadNamePrefix("AsyncTaskExecutor-");
+        executor.setThreadNamePrefix(THREAD_NAME);
         // 设置任务丢弃后的处理策略
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         return executor;

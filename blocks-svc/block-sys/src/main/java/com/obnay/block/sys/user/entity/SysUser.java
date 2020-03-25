@@ -16,7 +16,6 @@ import javax.persistence.Entity;
  * @author taoyanbo
  * @date 2020-03-21 16:36
  */
-
 @Data
 @Entity
 @DynamicInsert

@@ -4,6 +4,8 @@ package com.obnay.common.base;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
+ * 基础Repository
+ *
  * @author taoyanbo
  * @date 2020-03-22 00:15
  */

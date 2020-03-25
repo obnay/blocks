@@ -41,7 +41,6 @@ public class RepositoryTest {
 
         sysUserService.save(user);
 
-
         System.out.println(sysUserRepository.findAll());
 
     }

@@ -3,6 +3,8 @@ package com.obnay.common.exception;
 import lombok.Data;
 
 /**
+ * 自定义异常
+ *
  * @author taoyanbo
  * @date 2020-03-24 16:26
  */

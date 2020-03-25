@@ -5,6 +5,8 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
+ * 返回结果
+ *
  * @author taoyanbo
  * @date 2020-03-24 16:54
  */
