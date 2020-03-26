@@ -7,8 +7,8 @@ spring:
     username: root
     password: root
     schema:
-      - classpath:/schema-mysql.sql
-      - classpath:/data-mysql.sql
+      - classpath:/sql/schema-mysql.sql
+      - classpath:/sql/data-mysql.sql
     initialization-mode: always
     platform: mysql
     continue-on-error: false
