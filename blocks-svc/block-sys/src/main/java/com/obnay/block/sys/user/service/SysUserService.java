@@ -15,5 +15,5 @@ public interface SysUserService extends BaseService<SysUser> {
      * @param loginName
      * @return
      */
-    SysUser findByLoginNameOrMobileOrEmail(String loginName);
+    SysUser findByLoginNameOrMobile(String loginName);
 }

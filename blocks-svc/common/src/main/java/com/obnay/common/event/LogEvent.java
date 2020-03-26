@@ -1,6 +1,6 @@
 package com.obnay.common.event;
 
-import java.util.Map;
+import com.obnay.common.base.BaseEntity;
 
 /**
  * 日志事件
@@ -8,13 +8,13 @@ import java.util.Map;
  * @author taoyanbo
  * @date 2020-03-23 16:33
  */
-public class LogEvent extends AbstractEvent<Map<String, Object>> {
+public class LogEvent extends AbstractEvent<BaseEntity> {
 
-    public LogEvent(Object source, Map<String, Object> log) {
+    public LogEvent(Object source, BaseEntity log) {
         super(source, log);
     }
 
-    public LogEvent(Map<String, Object> log) {
+    public LogEvent(BaseEntity log) {
         super(log);
     }
 

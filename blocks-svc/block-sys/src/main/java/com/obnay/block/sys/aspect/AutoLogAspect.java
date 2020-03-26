@@ -1,7 +1,11 @@
-package com.obnay.common.aspect;
+package com.obnay.block.sys.aspect;
 
+import com.alibaba.fastjson.JSON;
+import com.obnay.block.sys.log.entity.SysLog;
+import com.obnay.block.sys.user.entity.SysUser;
 import com.obnay.common.annotation.AutoLog;
 import com.obnay.common.event.LogEvent;
+import org.apache.shiro.SecurityUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -13,8 +17,6 @@ import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 系统日志切面
@@ -42,33 +44,41 @@ public class AutoLogAspect {
         //执行时长(毫秒)
         long time = System.currentTimeMillis() - beginTime;
         //保存日志
-        publisherLog(point, time);
+        publishLog(point, time);
         return result;
     }
 
-    private void publisherLog(ProceedingJoinPoint joinPoint, long time) {
+    private void publishLog(ProceedingJoinPoint joinPoint, long time) {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();
 
-        Map<String, Object> log = new HashMap<>(16);
+        SysLog log = new SysLog();
 
         AutoLog autoLog = method.getAnnotation(AutoLog.class);
         if (null != autoLog) {
-            log.put("logContent", autoLog.value());
-            log.put("logType", autoLog.logType());
+            log.setLogContent(autoLog.value());
+            log.setLogType(autoLog.logType());
         }
 
         //请求的方法名
         String className = joinPoint.getTarget().getClass().getName();
         String methodName = signature.getName();
-        log.put("class", className);
-        log.put("method", methodName);
-        //请求的参数
-        log.put("args", joinPoint.getArgs());
-        //耗时
-        log.put("cost", time);
-        log.put("createTime", new Date());
+        log.setClassName(className);
+        log.setMethodName(methodName);
 
+        //请求的参数
+
+        log.setRequestParam(JSON.toJSONString(joinPoint.getArgs()));
+        //耗时
+        log.setCostTime(time);
+        log.setRequestTime(new Date());
+
+
+        SysUser user = (SysUser) SecurityUtils.getSubject().getPrincipal();
+        if (user != null) {
+            log.setUserId(user.getId());
+            log.setUserName(user.getRealName());
+        }
         //发布日志事件
         eventPublisher.publishEvent(new LogEvent(this, log));
     }

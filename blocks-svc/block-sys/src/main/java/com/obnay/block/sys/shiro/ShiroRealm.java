@@ -14,6 +14,7 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
@@ -27,6 +28,7 @@ import org.springframework.util.StringUtils;
 public class ShiroRealm extends AuthorizingRealm {
 
     @Autowired
+    @Lazy
     private SysUserService userService;
 
     @Override
@@ -64,7 +66,7 @@ public class ShiroRealm extends AuthorizingRealm {
         if (StringUtils.isEmpty(userName)) {
             throw new AuthenticationException("Token invalid.");
         }
-        SysUser user = userService.findByLoginNameOrMobileOrEmail(userName);
+        SysUser user = userService.findByLoginNameOrMobile(userName);
         if (null == user) {
             throw new AuthenticationException("User does not exist.");
         }

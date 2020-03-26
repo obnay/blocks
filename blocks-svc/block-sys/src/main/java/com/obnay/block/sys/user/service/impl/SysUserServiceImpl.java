@@ -20,7 +20,7 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUser, SysUserReposito
     }
 
     @Override
-    public SysUser findByLoginNameOrMobileOrEmail(String loginName) {
-        return this.getRepository().findByLoginNameOrMobileOrEmail(loginName);
+    public SysUser findByLoginNameOrMobile(String loginName) {
+        return this.getRepository().findByLoginNameOrMobile(loginName, loginName);
     }
 }

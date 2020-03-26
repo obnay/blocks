@@ -13,7 +13,8 @@ public interface SysUserRepository extends BaseRepository<SysUser> {
      * 根据账号查找
      *
      * @param loginName
+     * @param mobile
      * @return
      */
-    SysUser findByLoginNameOrMobileOrEmail(String loginName);
+    SysUser findByLoginNameOrMobile(String loginName, String mobile);
 }

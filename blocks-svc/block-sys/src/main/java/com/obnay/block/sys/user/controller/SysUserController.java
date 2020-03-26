@@ -7,10 +7,7 @@ import com.obnay.common.base.Result;
 import com.obnay.common.constant.LogTypeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author taoyanbo
@@ -29,6 +26,14 @@ public class SysUserController {
     public Result<SysUser> queryOne(@PathVariable String id) {
         Result<SysUser> result = new Result<>();
         result.setResult(sysUserService.findById(id));
+        return result;
+    }
+
+    @AutoLog(value = "用户新增", logType = LogTypeEnum.OP_LOG)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public Result<SysUser> add(@RequestBody SysUser sysUser) {
+        Result<SysUser> result = new Result<>();
+        result.setResult(sysUserService.save(sysUser));
         return result;
     }
 }
