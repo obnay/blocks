@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
  */
 @Slf4j
 @RestController
-@RequestMapping("/sysUser")
+@RequestMapping("/user")
 public class SysUserController {
 
     @Autowired
@@ -36,4 +36,6 @@ public class SysUserController {
         result.setResult(sysUserService.save(sysUser));
         return result;
     }
+
+
 }

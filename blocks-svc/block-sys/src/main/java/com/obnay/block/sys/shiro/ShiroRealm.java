@@ -1,5 +1,7 @@
 package com.obnay.block.sys.shiro;
 
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
 import com.obnay.block.sys.shiro.jwt.JwtToken;
 import com.obnay.block.sys.shiro.jwt.JwtUtils;
 import com.obnay.block.sys.user.entity.SysUser;
@@ -15,8 +17,10 @@ import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
+
+import javax.annotation.PostConstruct;
+import java.util.concurrent.TimeUnit;
 
 /**
  * ShiroRealm
@@ -26,6 +30,15 @@ import org.springframework.util.StringUtils;
  */
 @Slf4j
 public class ShiroRealm extends AuthorizingRealm {
+
+    private static final String PREFIX_USER_TOKEN = "PREFIX_USER_TOKEN_";
+
+    private Cache<String, String> caffeineCache;
+
+    @PostConstruct
+    public void createCache() {
+        caffeineCache = Caffeine.newBuilder().expireAfterAccess(1, TimeUnit.HOURS).maximumSize(10_1000).build();
+    }
 
     @Autowired
     @Lazy
@@ -70,11 +83,20 @@ public class ShiroRealm extends AuthorizingRealm {
         if (null == user) {
             throw new AuthenticationException("User does not exist.");
         }
+        String key = PREFIX_USER_TOKEN + userName;
+        String tokenCache = caffeineCache.getIfPresent(key);
+        if (StringUtils.isEmpty(tokenCache)) {
+            throw new AuthenticationException("Token invalid.");
+        }
+        //如果jwt的token失效，需要重新生存并刷新缓存中的token
+        if (!JwtUtils.verify(token, userName, user.getPassword())) {
+            String newToken = JwtUtils.sign(userName, user.getPassword());
+            caffeineCache.put(key, newToken);
+        }
+
         if (user.getStatus() != 0) {
             throw new AuthenticationException("Abnormal user status.");
         }
-        //TODO: token check and token cache
         return new SimpleAuthenticationInfo(user, token, getName());
-
     }
 }

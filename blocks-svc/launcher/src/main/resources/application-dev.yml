@@ -6,3 +6,11 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/blocks?characterEncoding=UTF-8&useUnicode=true&useSSL=false&serverTimezone=GMT%2b8
     username: root
     password: root
+    schema:
+      - classpath:/schema-mysql.sql
+      - classpath:/data-mysql.sql
+    initialization-mode: always
+    platform: mysql
+    continue-on-error: false
+    sql-script-encoding: utf-8
+    separator: ;

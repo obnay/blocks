@@ -8,6 +8,7 @@ import lombok.experimental.Accessors;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -31,12 +32,16 @@ public class SysLog extends BaseEntity {
 
     private Date requestTime;
 
+    @Column(length = 200)
     private String className;
 
+    @Column(length = 100)
     private String methodName;
 
+    @Column(length = 32)
     private String userId;
 
+    @Column(length = 100)
     private String userName;
 
     private String logContent;
@@ -46,5 +51,6 @@ public class SysLog extends BaseEntity {
 
     private String requestParam;
 
+    @Column(length = 10)
     private String requestMethod;
 }

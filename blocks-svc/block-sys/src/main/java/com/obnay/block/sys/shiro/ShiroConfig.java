@@ -9,6 +9,7 @@ import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSource
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +17,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.servlet.Filter;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,6 +28,12 @@ import java.util.Map;
  */
 @Configuration
 public class ShiroConfig {
+
+    /**
+     * 不鉴权uri
+     */
+    @Value("#{'${anno.uri}'.split(',')}")
+    private List<String> annoUriList;
 
     @Bean
     @ConditionalOnMissingBean
@@ -75,9 +83,9 @@ public class ShiroConfig {
         Map<String, String> filterChainMap = new LinkedHashMap<>(16);
         //配置退出过滤器logout，由shiro实现
         // 配置不会被拦截的链接 顺序判断
-        filterChainMap.put("/sysUser/login/**", "anon");
-        filterChainMap.put("/druid/**", "anon");
-
+        annoUriList.forEach(uri -> {
+            filterChainMap.put(uri, "anon");
+        });
         // 添加自己的过滤器并且取名为jwt
         Map<String, Filter> filterMap = new HashMap<String, Filter>(1);
         filterMap.put("jwtFilter", new JwtFilter());
