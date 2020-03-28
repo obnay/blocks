@@ -1,12 +1,11 @@
 package com.obnay.common.base;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -41,26 +40,6 @@ public class BaseEntity implements Serializable {
      */
     @Column(updatable = false)
     @CreatedDate
+    @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createDate;
-
-    /**
-     * 修改时间
-     */
-    @Column
-    @LastModifiedDate
-    private Date updateDate;
-
-    /**
-     * 创建人
-     */
-    @Column(length = 32, updatable = false)
-    @CreatedBy
-    private String createBy;
-
-    /**
-     * 修改人
-     */
-    @Column(length = 32)
-    @LastModifiedBy
-    private String updateBy;
 }

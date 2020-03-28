@@ -1,5 +1,7 @@
 package com.obnay.block.sys.user.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.obnay.common.base.BaseAuditorEntity;
 import com.obnay.common.base.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,7 +24,7 @@ import javax.persistence.Entity;
 @DynamicUpdate
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class SysUser extends BaseEntity {
+public class SysUser extends BaseAuditorEntity {
 
     private static final long serialVersionUID = 1L;
 
@@ -65,12 +67,14 @@ public class SysUser extends BaseEntity {
     /**
      * 密码
      */
+    @JsonIgnore
     @Column(length = 100)
     private String password;
 
     /**
      * 加密
      */
+    @JsonIgnore
     @Column(length = 100)
     private String salt;
 
@@ -83,6 +87,7 @@ public class SysUser extends BaseEntity {
     /**
      * 状态
      */
+    @JsonIgnore
     @Column(length = 1)
     private Byte status;
 

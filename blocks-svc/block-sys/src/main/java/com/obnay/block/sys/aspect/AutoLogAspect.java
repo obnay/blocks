@@ -77,7 +77,6 @@ public class AutoLogAspect {
         SysUser user = (SysUser) SecurityUtils.getSubject().getPrincipal();
         if (user != null) {
             log.setUserId(user.getId());
-            log.setUserName(user.getRealName());
         }
         //发布日志事件
         eventPublisher.publishEvent(new LogEvent(this, log));

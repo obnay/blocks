@@ -8,10 +8,7 @@ import lombok.experimental.Accessors;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -26,31 +23,62 @@ import java.util.Date;
 @Accessors(chain = true)
 public class SysLog extends BaseEntity {
 
+    /**
+     * 耗时
+     */
     private long costTime;
 
-    private String ip;
+    /**
+     * 客户端IP
+     */
+    @Column(length = 20)
+    private String ipAddress;
 
+    /**
+     * 请求时间
+     */
     private Date requestTime;
 
+    /**
+     * 类名
+     */
     @Column(length = 200)
     private String className;
 
+    /**
+     * 方法名
+     */
     @Column(length = 100)
     private String methodName;
 
+    /**
+     * 用户ID
+     */
     @Column(length = 32)
     private String userId;
 
+    /**
+     * 日志说明
+     */
     @Column(length = 100)
-    private String userName;
-
     private String logContent;
 
+    /**
+     * 日志类型
+     */
     @Enumerated(EnumType.ORDINAL)
     private LogTypeEnum logType;
 
+    /**
+     * 请求参数
+     */
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
     private String requestParam;
 
-    @Column(length = 10)
+    /**
+     * 请求方法
+     */
+    @Column(length = 20)
     private String requestMethod;
 }

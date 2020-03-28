@@ -1,6 +1,6 @@
 package com.obnay.block.sys.permission;
 
-import com.obnay.common.base.BaseEntity;
+import com.obnay.common.base.BaseAuditorEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -22,7 +22,7 @@ import javax.persistence.Entity;
 @DynamicUpdate
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class SysRolePermission extends BaseEntity {
+public class SysRolePermission extends BaseAuditorEntity {
 
     @Column(length = 32)
     private String roleId;

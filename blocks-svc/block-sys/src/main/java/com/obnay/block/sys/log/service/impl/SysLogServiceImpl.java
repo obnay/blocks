@@ -6,11 +6,13 @@ import com.obnay.block.sys.log.service.SysLogService;
 import com.obnay.common.base.BaseServiceImpl;
 import com.obnay.common.event.LogEvent;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
 
 /**
  * @author taoyanbo
  * @date 2020-03-26 11:24
  */
+@Service
 public class SysLogServiceImpl extends BaseServiceImpl<SysLog, SysLogRepository> implements SysLogService {
 
     @Async

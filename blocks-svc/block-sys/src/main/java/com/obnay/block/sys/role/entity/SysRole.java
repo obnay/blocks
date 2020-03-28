@@ -1,5 +1,6 @@
 package com.obnay.block.sys.role.entity;
 
+import com.obnay.common.base.BaseAuditorEntity;
 import com.obnay.common.base.BaseEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -22,7 +23,7 @@ import javax.persistence.Entity;
 @DynamicUpdate
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class SysRole extends BaseEntity {
+public class SysRole extends BaseAuditorEntity {
 
     /**
      * 角色名称
