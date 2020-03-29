@@ -38,7 +38,7 @@ public class SysUserController {
         return result;
     }
 
-    @AutoLog(value = "用户新增", logType = LogTypeEnum.OP_LOG)
+    @AutoLog(value = "用户登陆", logType = LogTypeEnum.OP_LOG)
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Result login(@RequestBody LoginModel loginModel) {
         return userService.login(loginModel);
