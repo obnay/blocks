@@ -1,3 +1,2 @@
-select 1
-from dual;
+select 1 from dual;
 INSERT INTO blocks.sys_user( id , create_by , create_date , update_by , update_date , age , avatar , email , login_name , mobile , PASSWORD , real_name , salt , sex , STATUS) SELECT '100001' , 'admin' , '2020-03-27 00:24:47' , 'obnay' , '2020-03-27 00:24:56' , '26' , NULL , 'obnayt@gmail.com' , 'obnay' , '15288233587' , '06b3f7bca5b456c7' , '陶彦博' , 'taoyanbo' , '1' , '1' FROM DUAL WHERE NOT EXISTS( SELECT 1 FROM sys_user WHERE id = '100001');
