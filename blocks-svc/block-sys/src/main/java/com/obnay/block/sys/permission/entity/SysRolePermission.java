@@ -1,4 +1,4 @@
-package com.obnay.block.sys.permission;
+package com.obnay.block.sys.permission.entity;
 
 import com.obnay.common.base.BaseAuditorEntity;
 import lombok.Data;
