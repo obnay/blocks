@@ -14,14 +14,13 @@ module.exports = {
     proxy: {
       '/blocks': {
         target: 'http://127.0.0.1:8080', // 请求本地
-        //target: 'http://10.173.23.48:9010', // 测试环境
-        //target: 'http://10.173.23.23:9080', // 测试环境
+        //target: 'https://blocks.obnay.com', // 生产环境
         ws: false,
         changeOrigin: true,
       },
     },
   },
-  lintOnSave: true, // eslint 验证,
+  lintOnSave: false, // eslint 验证,
   productionSourceMap: false, // 如果不需要生产时的源映射，那么将此设置为false可以加速生产构建
 
   // gzip
