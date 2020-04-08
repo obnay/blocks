@@ -44,7 +44,7 @@ module.exports = {
     config.resolve.alias
       .set('@$', resolve('src'))
       .set('@assets', resolve('src/assets'))
-      .set('@comp', resolve('src/components'))
+      .set('@components', resolve('src/components'))
       .set('@request', resolve('src/request'))
       .set('@views', resolve('src/views'))
       .set('@utils', resolve('src/utils'));
