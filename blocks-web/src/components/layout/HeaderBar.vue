@@ -24,13 +24,19 @@ export default {
   name: "HeaderBar",
   data() {
     return {
-      collapsed: false,
       currentUser: { name: "admin" }
     };
   },
+  props: {
+    collapsed: {
+      type: Boolean,
+      default: false,
+      required: true
+    }
+  },
   methods: {
     onCollapsedClick() {
-      this.collapsed = !this.collapsed;
+      this.$emit("update:collapsed", !this.collapsed);
     },
     handleLogout() {
       const _this = this;
@@ -43,7 +49,9 @@ export default {
         onCancel() {}
       });
     },
-    onLogout() {}
+    onLogout() {
+      console.log("logout");
+    }
   }
 };
 </script>

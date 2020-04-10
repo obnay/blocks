@@ -1,10 +1,15 @@
 <template>
   <a-layout id="home-layout" style="min-height:100vh;">
-    <a-layout-sider>
+    <a-layout-sider :trigger="null" collapsible v-model="collapsed">
+      <div class="logo">
+        <a href="/">
+          <img alt="logo" src="~@/assets/logo.png" style="width:30%" />
+        </a>
+      </div>
       <menu-bar :menus="menus"></menu-bar>
     </a-layout-sider>
     <a-layout>
-      <header-bar></header-bar>
+      <header-bar :collapsed.sync="collapsed"></header-bar>
       <a-layout-content class="content">
         <router-view />
       </a-layout-content>
@@ -21,6 +26,7 @@ export default {
   name: "Home",
   data() {
     return {
+      collapsed: false,
       menus: [
         {
           key: "1",
@@ -72,5 +78,9 @@ export default {
   padding: 24px;
   background: #fff;
   overflow: initial;
+}
+.logo {
+  height: 32px;
+  margin: 24px;
 }
 </style>
