@@ -1,5 +1,5 @@
 <template>
-  <a-layout-footer style="textAlign: center">
+  <a-layout-footer style="textAlign: center;">
     <div>
       <span>
         Software Blocks ©2020 Created by Obnay
