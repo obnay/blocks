@@ -24,30 +24,36 @@ export default {
       menus: [
         {
           key: "1",
-          title: "Option 1"
+          title: "菜单一",
+          icon: "book"
         },
         {
           key: "2",
-          title: "Navigation 2",
+          title: "菜单二",
+          icon: "bug",
           children: [
             {
               key: "2.1",
               title: "Navigation 3",
+              icon: "diff",
               children: [
                 {
                   key: "2.1.1",
                   title: "Option 2.1.1",
-                  children: [{ key: "2.1.1.1", title: "Option 2.1.1.1" }]
+                  icon: "edit",
+                  children: [
+                    { key: "2.1.1.1", title: "Option 2.1.1.1", icon: "crown" }
+                  ]
                 }
               ]
             },
-            {  key: "2.2",
-              title: "Navigation 2",}
+            { key: "2.2", title: "Navigation 2", icon: "eye" }
           ]
         },
         {
           key: "3",
-          title: "Option 3"
+          title: "菜单三",
+          icon: "cloud"
         }
       ]
     };

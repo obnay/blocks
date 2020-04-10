@@ -1,19 +1,18 @@
 <template>
   <a-sub-menu :key="menuInfo.key" v-bind="$props" v-on="$listeners">
     <span slot="title">
-      <a-icon type="mail" />
+      <a-icon :type="menuInfo.icon" />
       <span>{{ menuInfo.title }}</span>
     </span>
     <template v-for="item in menuInfo.children">
       <a-menu-item v-if="!item.children" :key="item.key">
-        <a-icon type="pie-chart" />
+        <a-icon :type="item.icon" />
         <span>{{ item.title }}</span>
       </a-menu-item>
       <sub-menu v-else :key="item.key" :menu-info="item" />
     </template>
   </a-sub-menu>
 </template>
-
 
 <script>
 import { Menu } from "ant-design-vue";
