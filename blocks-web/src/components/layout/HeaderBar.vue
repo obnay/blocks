@@ -6,10 +6,10 @@
         :type="collapsed ? 'menu-unfold' : 'menu-fold'"
         @click="onCollapsedClick"
       />
-      <span>欢迎进入 xxx管理后台</span>
+      <span>欢迎!</span>
       <div style="float:right;margin-right:16px;">
         <a-avatar size="small" icon="user" />
-        <span style="margin-left:14px;margin-right:14px;">欢迎您，{{currentUser.name}}</span>
+        <span style="margin-left:14px;margin-right:14px;">{{currentUser.name}}</span>
         <a class="logout" href="javascript:;" @click="handleLogout">
           <a-icon type="poweroff" />
           <span style="margin-left:4px;">退出</span>

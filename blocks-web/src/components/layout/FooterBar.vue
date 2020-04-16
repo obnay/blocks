@@ -1,26 +1,38 @@
 <template>
-  <a-layout-footer style="textAlign: center;">
+  <a-layout-footer align="center" class="footer">
     <div>
       <span>
-        Software Blocks ©2020 Created by Obnay
-        <github-button
+        Blocks software ©2020 Created by Obnay
+        <a
           href="https://github.com/obnay/blocks"
-          aria-label="Star obnay/blocks on GitHub"
-        >Star</github-button>
+          target="_blank"
+        >
+          <a-icon type="github" />
+        </a>
       </span>
     </div>
   </a-layout-footer>
 </template>
 
 <script>
-import GithubButton from "vue-github-button";
 export default {
   name: "FooterBar",
-  components: {
-    GithubButton
+  methods: {
+    gotoGithub() {
+      window.open("https://github.com/obnay/blocks", "_blank");
+    }
   }
 };
 </script>
 
 <style scoped>
+.footer {
+  padding: 0;
+}
+.footer div {
+  margin: 10px 0;
+}
+.github {
+  cursor: pointer;
+}
 </style>

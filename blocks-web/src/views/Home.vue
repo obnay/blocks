@@ -74,8 +74,8 @@ export default {
 
 <style scoped>
 .content {
-  margin: 24px 16px 0;
-  padding: 24px;
+  margin: 16px 16px 0;
+  padding: 0px;
   background: #fff;
   overflow: initial;
 }
