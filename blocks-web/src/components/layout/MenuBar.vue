@@ -1,5 +1,5 @@
 <template>
-  <a-menu theme="dark" mode="inline" @click="handleClick">
+  <a-menu theme="dark" mode="inline" @click="handleClick" onselectstart="return false;">
     <template v-for="item in menus">
       <a-menu-item v-if="!item.children" :key="item.key">
         <a-icon :type="item.icon" />
