@@ -1,6 +1,6 @@
-package com.obnay.block.sys.role.service;
+package com.obnay.block.sys.permission.service;
 
-import com.obnay.block.sys.role.entity.SysRole;
+import com.obnay.block.sys.permission.entity.SysRole;
 import com.obnay.common.base.BaseService;
 
 /**

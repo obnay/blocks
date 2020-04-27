@@ -1,4 +1,4 @@
-package com.obnay.block.sys.role.entity;
+package com.obnay.block.sys.permission.entity;
 
 import com.obnay.common.base.BaseAuditorEntity;
 import com.obnay.common.base.BaseEntity;

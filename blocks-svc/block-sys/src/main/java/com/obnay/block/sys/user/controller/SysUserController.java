@@ -38,6 +38,14 @@ public class SysUserController {
         return result;
     }
 
+    @AutoLog(value = "用户修改", logType = LogTypeEnum.OP_LOG)
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public Result<SysUser> update(@RequestBody SysUser sysUser) {
+        Result<SysUser> result = new Result<>();
+        result.setResult(userService.update(sysUser));
+        return result;
+    }
+
     @AutoLog(value = "用户登陆", logType = LogTypeEnum.OP_LOG)
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Result login(@RequestBody LoginModel loginModel) {
